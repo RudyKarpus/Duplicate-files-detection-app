@@ -1,4 +1,6 @@
 from detection_module import hash, find_duplicates
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import os
 import sys
 
 
@@ -10,6 +12,15 @@ def delete_files(path_list):
     # deletes files
     pass
 
+def hash_worker(path):
+    try:
+        h = hash(path)
+        if h is not None:
+            return (h, path)
+    except Exception as e:
+        print(f"Hashing error {path}: {e}")
+    return None
+
 def main():
     if len(sys.argv) != 2:
         print("Help: python main.py <path>")
@@ -17,10 +28,12 @@ def main():
     folder = sys.argv[1]
     files = scan_folder(folder)
     hash_list = []
-    for path in files:
-        h = hash(path)
-        if h is not None:
-            hash_list.append((h, path))
+    with ThreadPoolExecutor(max_workers=os.cpu_count() or 4) as executor:
+        future_to_path = {executor.submit(hash_worker, path): path for path in files}
+        for future in as_completed(future_to_path):
+            result = future.result()
+            if result:
+                hash_list.append(result)
 
     duplicates = find_duplicates(hash_list)
     if len(duplicates) != 0:
@@ -37,6 +50,6 @@ def main():
 
     if(answer == "YES"):
         delete_files(duplicates)
-        
+
 if __name__ == "__main__":
     main()
