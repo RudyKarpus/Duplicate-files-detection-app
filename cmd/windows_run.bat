@@ -1,7 +1,9 @@
 @echo off
 setlocal
 cd ..
-
+if exist .venv (
+    rmdir /s /q .venv
+)
 echo [1/4] Creating virtual environment...
 python -m venv .venv
 
