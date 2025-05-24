@@ -1,25 +1,34 @@
-from detection_module import hash, find_duplicates
-from concurrent.futures import ThreadPoolExecutor, as_completed
 import os
 import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+from detection_module import find_duplicates, hash_file
 
 
 def scan_folder(folder):
     # return list of files paths in folder
-    pass
+    paths = []
+    for root, _, files in os.walk(folder):
+        for name in files:
+            paths.append(os.path.join(root, name))
+
+    return paths
+
 
 def delete_files(path_list):
     # deletes files
     pass
 
+
 def hash_worker(path):
     try:
-        h = hash(path)
+        h = hash_file(path)
         if h is not None:
             return (h, path)
     except Exception as e:
         print(f"Hashing error {path}: {e}")
     return None
+
 
 def main():
     if len(sys.argv) != 2:
@@ -48,8 +57,9 @@ def main():
     print("Delete them? (YES/NO)")
     answer = input()
 
-    if(answer == "YES"):
+    if answer == "YES":
         delete_files(duplicates)
+
 
 if __name__ == "__main__":
     main()
