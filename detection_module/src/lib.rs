@@ -3,7 +3,7 @@ use rayon::prelude::*;
 use sha2::{Sha256, Digest};
 use std::io::{BufReader, Read};
 use std::fs::File;
-
+use std::collections::HashMap;
 #[pyfunction]
 fn hash_file(path: String) -> PyResult<Option<String>> {
     let file = match File::open(&path) {
@@ -26,10 +26,18 @@ fn hash_file(path: String) -> PyResult<Option<String>> {
 }
 #[pyfunction]
 fn find_duplicates(hashes: Vec<(String, String)>) -> PyResult<Vec<Vec<String>>> {
-    let m = (0..2)
-        .map(|i| (0..2).map(|j| format!("({},{})", i, j)).collect())
+    let mut map: HashMap<String, Vec<String>> = HashMap::new();
+
+    for (hash, path) in hashes {
+        map.entry(hash).or_default().push(path);
+    }
+
+    let duplicates: Vec<Vec<String>> = map
+        .into_iter()
+        .filter_map(|(_, paths)| if paths.len() > 1 { Some(paths) } else { None })
         .collect();
-    Ok(m)
+
+    Ok(duplicates)
 }
 
 #[pymodule]
