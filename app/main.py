@@ -15,9 +15,11 @@ def scan_folder(folder):
     return paths
 
 
-def delete_files(path_list):
-    # deletes files
-    pass
+def delete_file_worker(path):
+    try:
+        os.remove(path)
+    except Exception as e:
+        print(f"Error deleting file {path}: {e}")
 
 
 def hash_worker(path):
@@ -45,7 +47,7 @@ def main():
                 hash_list.append(result)
 
     duplicates = find_duplicates(hash_list)
-    if len(duplicates) != 0:
+    if len(duplicates) == 0:
         print("Found 0 duplicates")
         sys.exit(0)
     for duplicate in duplicates:
@@ -54,11 +56,27 @@ def main():
             print(f"{file}")
         print("")
 
-    print("Delete them? (YES/NO)")
-    answer = input()
+    print("Delete duplicates them? (YES/NO)")
 
-    if answer == "YES":
-        delete_files(duplicates)
+    while True:
+        answer = input()
+
+        if answer == "YES":
+            files_to_delete = []
+            for group in duplicates:
+                files_to_delete.extend(group[1:])
+
+            with ThreadPoolExecutor() as executor:
+                futures = [
+                    executor.submit(delete_file_worker, path)
+                    for path in files_to_delete
+                ]
+                for future in as_completed(futures):
+                    future.result()
+            sys.exit(0)
+
+        if answer == "NO":
+            sys.exit(0)
 
 
 if __name__ == "__main__":
