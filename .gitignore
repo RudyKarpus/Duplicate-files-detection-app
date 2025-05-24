@@ -1,0 +1,3 @@
+.venv/
+detection_module/target
+detection_module/Cargo.lock
