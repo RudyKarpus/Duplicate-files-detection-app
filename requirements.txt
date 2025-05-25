@@ -1,2 +1,3 @@
 maturin
 virtualenv
+pytest
