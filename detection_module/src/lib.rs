@@ -1,11 +1,11 @@
 use pyo3::prelude::*;
-use rayon::prelude::*;
 use sha2::{Sha256, Digest};
 use std::io::{BufReader, Read};
 use std::fs::File;
 use std::collections::HashMap;
+
 #[pyfunction]
-fn hash_file(path: String) -> PyResult<Option<String>> {
+pub fn hash_file(path: String) -> PyResult<Option<String>> {
     let file = match File::open(&path) {
         Ok(f) => f,
         Err(_) => return Ok(None),
@@ -24,8 +24,9 @@ fn hash_file(path: String) -> PyResult<Option<String>> {
 
     Ok(Some(format!("{:x}", hasher.finalize())))
 }
+
 #[pyfunction]
-fn find_duplicates(hashes: Vec<(String, String)>) -> PyResult<Vec<Vec<String>>> {
+pub fn find_duplicates(hashes: Vec<(String, String)>) -> PyResult<Vec<Vec<String>>> {
     let mut map: HashMap<String, Vec<String>> = HashMap::new();
 
     for (hash, path) in hashes {
