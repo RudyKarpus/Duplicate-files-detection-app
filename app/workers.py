@@ -5,6 +5,11 @@ from detection_module import hash_file
 
 def delete_file_worker(path):
     """Deletes file from path"""
+
+    if not os.path.isfile(path=path):
+        print(f"There is no such a file {path}")
+        return None
+
     try:
         os.remove(path)
     except Exception as e:
@@ -12,7 +17,12 @@ def delete_file_worker(path):
 
 
 def hash_worker(path):
-    """Return: Hashed file content"""
+    """Return: Hashed file content and path"""
+
+    if not os.path.isfile(path=path):
+        print(f"There is no such a file {path}")
+        return None
+
     try:
         h = hash_file(path)
         if h is not None:
