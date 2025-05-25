@@ -2,34 +2,10 @@ import os
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-from detection_module import find_duplicates, hash_file
+from utils import scan_folder
+from workers import delete_file_worker, hash_worker
 
-
-def scan_folder(folder):
-    # return list of files paths in folder
-    paths = []
-    for root, _, files in os.walk(folder):
-        for name in files:
-            paths.append(os.path.join(root, name))
-
-    return paths
-
-
-def delete_file_worker(path):
-    try:
-        os.remove(path)
-    except Exception as e:
-        print(f"Error deleting file {path}: {e}")
-
-
-def hash_worker(path):
-    try:
-        h = hash_file(path)
-        if h is not None:
-            return (h, path)
-    except Exception as e:
-        print(f"Hashing error {path}: {e}")
-    return None
+from detection_module import find_duplicates
 
 
 def main():
