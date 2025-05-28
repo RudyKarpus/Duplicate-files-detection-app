@@ -2,6 +2,11 @@
 
 set -e
 
+if [ -z "$1" ]; then
+    echo "Usage: ./run.sh <path>"
+    exit 1
+fi
+
 echo "[1/4] Creating virtual environment"
 python3 -m venv .venv
 
