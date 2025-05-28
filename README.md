@@ -37,7 +37,7 @@ Multithreaded app allowing user to scan folder for finding and deleting duplicat
 ### To run
   #### Python
   ```bash
-  pip install -r requirements-dev.txt
+  pip install -r requirements.txt
   pre-commit install
   pre-commit run --all-files
   ```
