@@ -2,7 +2,7 @@
 
 ## Description
 
-Multithreaded app allowing user to scan folder for duplicate files and detecting them as well as deleting them.
+Multithreaded app allowing user to scan folder for finding, deleting duplicated files in folders.
 
 ## Technology
 
@@ -24,5 +24,25 @@ Multithreaded app allowing user to scan folder for duplicate files and detecting
        ```bash
      .\cmd\windows_run.bat
    - **Linux**:
-     Coming in near future
+    ```bash
+    chmod +x scripts/run.sh
+    ./scripts/run.sh
 
+## Linting and formating
+  - [pre-commit](https://pre-commit.com) for automatic coding style verification and formating
+  - ***python***: flake8, black, isort
+  - ***rust***:  clippy, fmt
+
+### To run
+  #### Python-react
+  ```bash
+  pip install -r requirements-dev.txt
+  pre-commit install
+  pre-commit run --all-files
+  ```
+  #### Rust
+  ```bash
+  cd model
+  cargo fmt
+  cargo clippy
+  ```

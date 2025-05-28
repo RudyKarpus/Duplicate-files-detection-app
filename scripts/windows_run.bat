@@ -1,6 +1,6 @@
 @echo off
 setlocal
-cd ..
+
 echo [1/4] Creating virtual environment
 python -m venv .venv
 

@@ -2,8 +2,6 @@
 
 set -e
 
-cd ..
-
 echo "[1/4] Creating virtual environment"
 python3 -m venv .venv
 
