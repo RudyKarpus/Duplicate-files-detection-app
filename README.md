@@ -34,7 +34,7 @@ Multithreaded app allowing user to scan folder for finding and deleting duplicat
   - ***rust***:  clippy, fmt
 
 ### To run
-  #### Python-react
+  #### Python
   ```bash
   pip install -r requirements-dev.txt
   pre-commit install
@@ -48,7 +48,7 @@ Multithreaded app allowing user to scan folder for finding and deleting duplicat
   ```
 ## **To run tests**
    - **Windows**:
-      ```bash
+     ```bash
      .\cmd\windows_test.bat
      ```
    - **Linux**:
