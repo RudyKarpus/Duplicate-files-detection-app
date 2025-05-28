@@ -1,8 +1,8 @@
 use pyo3::prelude::*;
-use sha2::{Sha256, Digest};
-use std::io::{BufReader, Read};
-use std::fs::File;
+use sha2::{Digest, Sha256};
 use std::collections::HashMap;
+use std::fs::File;
+use std::io::{BufReader, Read};
 
 #[pyfunction]
 pub fn hash_file(path: String) -> PyResult<Option<String>> {

@@ -1,4 +1,4 @@
-use detection_module::{hash_file, find_duplicates};
+use detection_module::{find_duplicates, hash_file};
 use std::io::Write;
 use tempfile::NamedTempFile;
 
@@ -9,10 +9,7 @@ fn test_hash_file_success() {
     let path = file.path().to_str().unwrap().to_string();
 
     let expected_hash = "a1fff0ffefb9eace7230c24e50731f0a91c62f9cefdfe77121c2f607125dffae";
-    assert_eq!(
-        hash_file(path).unwrap(),
-        Some(expected_hash.to_string())
-    );
+    assert_eq!(hash_file(path).unwrap(), Some(expected_hash.to_string()));
 }
 
 #[test]
@@ -21,10 +18,7 @@ fn test_hash_file_empty() {
     let path = file.path().to_str().unwrap().to_string();
 
     let expected_hash = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
-    assert_eq!(
-        hash_file(path).unwrap(),
-        Some(expected_hash.to_string())
-    );
+    assert_eq!(hash_file(path).unwrap(), Some(expected_hash.to_string()));
 }
 
 #[test]
