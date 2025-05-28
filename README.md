@@ -2,7 +2,7 @@
 
 ## Description
 
-Multithreaded app allowing user to scan folder for finding, deleting duplicated files in folders.
+Multithreaded app allowing user to scan folder for finding and deleting duplicated files in it.
 
 ## Technology
 
@@ -46,3 +46,13 @@ Multithreaded app allowing user to scan folder for finding, deleting duplicated 
   cargo fmt
   cargo clippy
   ```
+## **To run tests**
+   - **Windows**:
+      ```bash
+     .\cmd\windows_test.bat
+     ```
+   - **Linux**:
+      ```bash
+      chmod +x scripts/run.sh
+      ./scripts/run.sh
+      ```

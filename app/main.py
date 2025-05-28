@@ -10,7 +10,12 @@ from detection_module import find_duplicates
 
 def main():
     if len(sys.argv) != 2:
-        print("Help: python main.py <path>")
+        print(
+            "Help:\n "
+            "python main.py <path>\n"
+            "<path>: path to catalog to check for duplicates"
+            ""
+        )
         sys.exit(1)
     folder = sys.argv[1]
     files = scan_folder(folder)
