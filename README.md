@@ -25,6 +25,7 @@ Multithreaded app allowing user to scan folder for finding and deleting duplicat
      .\cmd\windows_run.bat
    - **Linux**:
     ```bash
+    sudo apt install python3.12-venv
     chmod +x scripts/run.sh
     ./scripts/run.sh
 
