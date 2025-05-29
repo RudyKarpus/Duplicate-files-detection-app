@@ -2,8 +2,6 @@
 
 set -e
 
-cd ..
-
 echo "[1/3] Activating virtual environment..."
 source .venv/bin/activate
 

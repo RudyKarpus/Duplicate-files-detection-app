@@ -1,6 +1,6 @@
 @echo off
 setlocal
-cd ..
+
 echo [1/3] Activating virtual environment...
 call .venv\Scripts\activate.bat
 
