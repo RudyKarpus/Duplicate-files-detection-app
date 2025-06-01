@@ -4,6 +4,17 @@
 
 Multithreaded app allowing user to scan folder for finding and deleting duplicated files in it.
 
+
+![](docs/screenshots/show_dir.png)
+
+
+![](docs/screenshots/run_example.png)
+
+
+![](docs/screenshots/show_dir_after.png)
+
+
+
 ## Technology
 
 - 🐍 **Python**  – for high-level logic and threading
