@@ -54,7 +54,7 @@ Multithreaded app allowing user to scan folder for finding and deleting duplicat
   #### Rust
   ```bash
   cd model
-  cargo fmt
+  cargo fmt 
   cargo clippy
   ```
 ## **To run tests**
