@@ -32,8 +32,8 @@ Multithreaded app allowing user to scan folder for finding and deleting duplicat
    cd Duplicate-files-detection-app
 2. **Run**
    - **Windows**:
-       ```bash
-     .\cmd\windows_run.bat
+     ```bash
+      .\cmd\windows_run.bat
    - **Linux**:
     ```bash
     chmod +x scripts/run.sh
@@ -45,7 +45,7 @@ Multithreaded app allowing user to scan folder for finding and deleting duplicat
   - ***rust***:  clippy, fmt
 
 ### To run
-  #### Python-react
+  #### Python
   ```bash
   pip install -r requirements-dev.txt
   pre-commit install
